@@ -1,3 +1,5 @@
+const INPUT: &str = include_str!("../include/day1/input.txt");
+
 fn parse_lists(input: &str) -> (Vec<usize>, Vec<usize>) {
     let mut lists: (Vec<usize>, Vec<usize>) = (vec![], vec![]);
     let lines = input.lines();
@@ -40,10 +42,10 @@ fn part2(input: &str) -> usize {
 }
 
 fn main() {
-    let ret = part1(include_str!("../include/day1/input.txt"));
+    let ret = part1(INPUT);
     println!("Part 1: {ret}");
 
-    let ret = part2(include_str!("../include/day1/input.txt"));
+    let ret = part2(INPUT);
     println!("Part 2: {ret}");
 }
 
