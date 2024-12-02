@@ -20,8 +20,8 @@ fn part1(input: &str) -> usize {
     let mut total = 0;
 
     for i in 0..lists.0.len() {
-        let &item_a = lists.0.get(i).unwrap();
-        let &item_b = lists.1.get(i).unwrap();
+        let item_a = lists.0[i];
+        let item_b = lists.1[i];
         total += item_a.abs_diff(item_b);
     }
 
