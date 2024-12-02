@@ -37,7 +37,7 @@ fn is_safe(levels: &[i32], skip: Option<usize>) -> bool {
         let d = prev.abs_diff(next);
         let s = (prev - next).signum();
 
-        let out_range = d < 1 || d > 3;
+        let out_range = !(1..=3).contains(&d);
         let bad_sign = match sign {
             Some(x) => x != s,
             None => false,
