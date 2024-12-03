@@ -1,20 +1,26 @@
 use regex::Regex;
 
 const INPUT: &str = include_str!("../include/day3/input.txt");
+const REGEX: &str = r"mul\((\d{1,3}),(\d{1,3})\)";
 
-fn part1(input: &str) -> u32 {
-    let re = Regex::new(r"mul\((\d{1,3}),(\d{1,3})\)").unwrap();
+fn exec(input: &str, re: &Regex) -> u32 {
     re.captures_iter(input).map(|c| c.extract())
         .map(|(_, [a, b])| a.parse().unwrap_or(0) * b.parse().unwrap_or(0))
         .sum()
 }
 
+fn part1(input: &str) -> u32 {
+    let re = Regex::new(REGEX).unwrap();
+    exec(input, &re)
+}
+
 fn part2(input: &str) -> u32 {
+    let re = Regex::new(REGEX).unwrap();
     let mut ret = 0;
     let mut remaining = input;
     loop {
         if let Some((next, rem)) = remaining.split_once("don't()") {
-            ret += part1(next);
+            ret += exec(next, &re);
 
             match rem.split_once("do()") {
                 Some((_, rem)) => remaining = rem,
